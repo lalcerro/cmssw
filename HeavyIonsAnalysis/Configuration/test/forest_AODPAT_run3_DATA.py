@@ -19,7 +19,8 @@ process.HiForestInfo.info = cms.vstring("HiForest, miniAOD, 132X, data")
 process.source = cms.Source("PoolSource",
     duplicateCheckMode = cms.untracked.string("noDuplicateCheck"),
     fileNames = cms.untracked.vstring(
-        '/store/hidata/HIRun2022A/HITestRaw0/AOD/PromptReco-v1/000/362/293/00000/397cc4f3-4eb7-41b9-b2d1-baa004c7f61a.root'
+        'file:/eos/cms/store/express/HIRun2023A/HIExpressPhysics/FEVT/Express-v1/000/374/323/00000/53ec2f2e-7497-4fb8-980d-c38fd2069955.root'
+        #'/store/hidata/HIRun2022A/HITestRaw0/AOD/PromptReco-v1/000/362/293/00000/397cc4f3-4eb7-41b9-b2d1-baa004c7f61a.root'
     ), 
 )
 
@@ -146,6 +147,7 @@ process.pclusterCompatibilityFilter = cms.Path(process.clusterCompatibilityFilte
 process.pprimaryVertexFilterHI = cms.Path(process.primaryVertexFilterHI)
 process.pAna = cms.EndPath(process.skimanalysis)
 
+'''
 from HLTrigger.HLTfilters.hltHighLevel_cfi import hltHighLevel
 process.hltfilter = hltHighLevel.clone(
     HLTPaths = [
@@ -167,3 +169,4 @@ for path in process.paths:
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
 process = customiseEarlyDelete(process)
 # End adding early deletion
+'''

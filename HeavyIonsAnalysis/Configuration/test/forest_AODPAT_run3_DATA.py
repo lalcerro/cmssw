@@ -19,14 +19,16 @@ process.HiForestInfo.info = cms.vstring("HiForest, miniAOD, 132X, data")
 process.source = cms.Source("PoolSource",
     duplicateCheckMode = cms.untracked.string("noDuplicateCheck"),
     fileNames = cms.untracked.vstring(
-        'file:/eos/cms/store/express/HIRun2023A/HIExpressPhysics/FEVT/Express-v1/000/374/323/00000/53ec2f2e-7497-4fb8-980d-c38fd2069955.root'
+        'file:/eos/cms/store/express/HIRun2023A/HIExpressPhysics/FEVT/Express-v1/000/374/307/00000/b1d2c9b8-189b-4e71-a56e-e69747291126.root',
+        #'file:/eos/cms/store/express/HIRun2023A/HIExpressPhysics/FEVT/Express-v1/000/374/307/00000/b15b4943-c764-4d70-b87d-95402c791ce2.root'
+        #'file:/eos/cms/store/express/HIRun2023A/HIExpressPhysics/FEVT/Express-v1/000/374/323/00000/53ec2f2e-7497-4fb8-980d-c38fd2069955.root',
         #'/store/hidata/HIRun2022A/HITestRaw0/AOD/PromptReco-v1/000/362/293/00000/397cc4f3-4eb7-41b9-b2d1-baa004c7f61a.root'
     ), 
 )
 
 # number of events to process, set to -1 to process all events
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(100)
+    input = cms.untracked.int32(-1)
     )
 
 ###############################################################################
@@ -54,7 +56,7 @@ process.HiForestInfo.GlobalTagLabel = process.GlobalTag.globaltag
 # event analysis
 # process.load('HeavyIonsAnalysis.EventAnalysis.hltanalysis_cfi')
 process.load('HeavyIonsAnalysis.EventAnalysis.hievtanalyzer_data_cfi')
-#process.load('HeavyIonsAnalysis.EventAnalysis.hltanalysis_cfi')
+process.load('HeavyIonsAnalysis.EventAnalysis.hltanalysis_cfi')
 process.load('HeavyIonsAnalysis.EventAnalysis.skimanalysis_cfi')
 #process.load('HeavyIonsAnalysis.EventAnalysis.hltobject_cfi')
 #process.load('HeavyIonsAnalysis.EventAnalysis.l1object_cfi')
@@ -85,12 +87,12 @@ process.load("HeavyIonsAnalysis.MuonAnalysis.muonAnalyzer_cfi")
 # main forest sequence
 process.forest = cms.Path(
     process.HiForestInfo + 
-    # process.hltanalysis +
+    process.hltanalysis +
     process.trackSequencePbPb +
-    process.particleFlowAnalyser +
+    #process.particleFlowAnalyser +
     process.hiEvtAnalyzer +
     process.ggHiNtuplizer +
-    process.akCs4PFJetAnalyzer +
+    #process.akCs4PFJetAnalyzer +
     process.unpackedMuons +
     process.muonAnalyzer
     )
